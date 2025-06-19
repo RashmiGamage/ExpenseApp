@@ -34,20 +34,54 @@ namespace ExpenseApp.Infrastructure.RepositoryImplementations
 
         public async Task AddAsync(Expense expense)
         {
-            _context.Expenses.Add(expense);
-            await _context.SaveChangesAsync();
+            var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                _context.Expenses.Add(expense);
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task UpdateAsync(Expense expense)
         {
-            _context.Expenses.Update(expense);
-            await _context.SaveChangesAsync();
+            var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                _context.Expenses.Update(expense);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task DeleteAsync(Expense expense)
         {
-            _context.Expenses.Remove(expense);
-            await _context.SaveChangesAsync();
+            var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                _context.Expenses.Remove(expense);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
     }
 }

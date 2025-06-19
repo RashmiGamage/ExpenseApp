@@ -34,9 +34,9 @@ namespace ExpenceApp.Application.ServiceImplementation
             if (ExistingExpense.UserId != expense.UserId)
                 throw new UnauthorizedAccessException("You are not allowed to update this expense.");
 
-            expense.Description = expense.Description;
-            expense.Amount = expense.Amount;
-            expense.Date = expense.Date;
+            ExistingExpense.Description = expense.Description;
+            ExistingExpense.Amount = expense.Amount;
+            ExistingExpense.Date = expense.Date;
 
             await _repository.UpdateAsync(ExistingExpense);
         }

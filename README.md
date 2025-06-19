@@ -23,6 +23,50 @@ Built with ASP.NET Core, CQRS, MediatR, and Entity Framework Core.
 - JWT Authentication
 
 ---
+## 📘 Supported API Endpoints
+
+### 🔐 Authentication
+- **POST /api/auth/register**
+  
+      Register a new user account.
+
+- POST /api/auth/login
+  
+      Authenticate user and return a JWT token.
+
+### 📒 Expense Management
+- **POST /api/expenses**
+
+      Create a new expense
+  
+      Only accessible to the authenticated user.
+  
+- **GET /api/expenses**
+
+       Get all expenses for a specific month using a query parameter ?month=YYYY-MM-DD.
+  
+       Returns only the expenses belonging to the authenticated user.
+  
+- **GET /api/expenses/{id}**
+
+       Retrieve a single expense by its ID.
+  
+       Only returns the expense if it belongs to the authenticated user.
+  
+- **PUT /api/expenses/{id}**
+  
+       Update an existing expense.
+  
+       Only allowed if the expense belongs to the authenticated user.
+  
+- **DELETE /api/expenses/{id}** 
+
+      Delete an expense.
+  
+      Only allowed if the expense belongs to the authenticated user.
+
+
+---
 
 ## 🚀 Getting Started
 
@@ -70,48 +114,6 @@ Built with ASP.NET Core, CQRS, MediatR, and Entity Framework Core.
   ```
 - Now you can test Expense APIs.
 
----
-## 📘 Supported API Endpoints
-
-### 🔐 Authentication
-- **POST /api/auth/register**
-  
-      Register a new user account.
-
-- POST /api/auth/login
-  
-      Authenticate user and return a JWT token.
-
-### 📒 Expense Management
-- **POST /api/expenses**
-
-      Create a new expense
-  
-      Only accessible to the authenticated user.
-  
-- **GET /api/expenses**
-
-       Get all expenses for a specific month using a query parameter ?month=YYYY-MM-DD.
-  
-       Returns only the expenses belonging to the authenticated user.
-  
-- **GET /api/expenses/{id}**
-
-       Retrieve a single expense by its ID.
-  
-       Only returns the expense if it belongs to the authenticated user.
-  
-- **PUT /api/expenses/{id}**
-  
-       Update an existing expense.
-  
-       Only allowed if the expense belongs to the authenticated user.
-  
-- **DELETE /api/expenses/{id}** 
-
-      Delete an expense.
-  
-      Only allowed if the expense belongs to the authenticated user.
 
 
 

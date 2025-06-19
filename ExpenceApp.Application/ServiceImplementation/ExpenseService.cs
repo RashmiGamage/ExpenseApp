@@ -52,8 +52,6 @@ namespace ExpenceApp.Application.ServiceImplementation
 
         public async Task<ExpenseDto?> GetExpenseByIdAsync(int id, string userId)
         {
-            //var expense = await _repository.GetByIdAsync(id);
-            //return expense?.UserId == userId ? expense : null;
             var expense = await _repository.GetByIdAsync(id);
 
             if (expense == null || expense.UserId != userId)
